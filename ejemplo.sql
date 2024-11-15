@@ -7,8 +7,6 @@
 create database cursoBI;
 use cursoBI;
 
-drop table raw_df;
-
 ######################## Importar conjunto de datos ########################
 # Podemos importar manualmente o por asistente, o una mezcla de ambas
 # Por asistente resulta mejor
@@ -51,58 +49,36 @@ describe supermarket_sales;
 
 ######################## Limpieza de datos ######################## 
 
-UPDATE supermarket_sales
-SET Date = STR_TO_DATE(Date, '%d/%m/%Y');
+# Cambiamos los valores
 
+UPDATE supermarket_sales
+SET Date = STR_TO_DATE(Date, '%m/%d/%Y');
 
 # Esta actualización no se realizará si no deshabilitamos el modo seguro: Edit --> 	Preferences --> desmarca la opción Safe Updates
 
+# Ahora modificamos el tipo de la columna
+
+ALTER TABLE supermarket_sales
+MODIFY COLUMN Date DATE;
+
+# Ahora, hagamos lo mismo con Time
+# El tipo de dato adecuado para almacenar horas es TIME
+
+UPDATE supermarket_sales
+SET Time = STR_TO_DATE(Time, '%H:%i');
+
+# Ahora cambiamos el tipo asignado a la columna
+ALTER TABLE supermarket_sales
+MODIFY Time TIME;
+
+describe supermarket_sales; # apreciamos el resultado
+
+
+######################## NORMALIZACIÓN DE MI TABLA ######################## 
+
+# Tras definir las reglas de negocio procederemos a crear las tablas
+
+drop database cursobi;
 
 
 
-
-
-    
-# Si se quiere modificar la tabla
-
-
-
-# Habiendo creado la tabla ya podremos realizar la importación de los datos
-
-select * from ecommerce;
-
-describe ecommerce;
-
-# Pero recordemos que nuestra columna InvoiceDate es fecha, así que cambiemolo ahora si
-
-UPDATE ecommerce
-SET InvoiceDate = STR_TO_DATE(InvoiceDate, '%m-%d-%Y');
-
-
-
-
-# Si deseo verifiar si tiene datos nulos
-
-select sum(InvoiceNo is null) from ecommerce;
-
-# Replicado para toda columna
-
-SELECT 
-    SUM(InvoiceNo IS NULL) AS nulos_InvoiceNo,
-    SUM(StockCode IS NULL) AS nulos_StockCode,
-    SUM(Destails IS NULL) AS nulos_Destails,
-    SUM(Quantity IS NULL) AS nulos_Quantity,
-    SUM(InvoiceDate IS NULL) AS nulos_InvoiceDate,
-    SUM(UnitPrice IS NULL) AS nulos_UnitPrice,
-    SUM(CustomerID IS NULL) AS nulos_CustomerID,
-    SUM(Country IS NULL) AS nulos_Country
-FROM ecommerce;
-
-
-# Ahora si vamos a cambiar el tipo de datos
-
-
-
-
-
-    
