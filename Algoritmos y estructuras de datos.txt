@@ -1,0 +1,34 @@
+# Algoritmos y estructuras de datos
+**Enlace:** https://www.youtube.com/watch?v=8hly31xKli0&ab_channel=freeCodeCamp.org
+
+## ¿Qué es un algoritmo?
+
+Es un conjunto de pasos o instrucción para completar una tarea
+- Una recete
+- Una ruta para llegar a algún lugar
+
+Hay diferentes caminos para resolver algunos problemas. Algunos de ellos son muy comunes, de ahí que se identifiquen y categoricen. 
+Conocerlos resulta útil para saber cuándo aplicarlos conforme al problema a resolver. Este proceso de comprensión del problema e identificación del mejor algoritmo a emplear se conoce como **algorithmic thinking**.
+
+Ahora, los algoritmos requieren algunos elementos que nos servirán para verificar si son correctos, o, en otros terminos, son elementos definitorios:
+
+    1. Clearly defined problem statement, input and output
+    2. The steps in the algorithm need to be in a very specific order
+    3. The steps also need to be distinct
+    4. The algorithm should produce a result
+    5. The algorithm should complete in a finite amount of time
+
+En los algoritmos debemos evaluar su exactitud (correctness) y su eficiencia (efficiency).
+
+Recordemos que todo algoritmo parte por identificar un problema. Si al procesar un *input* con un algoritmo, tenemos el *output* deseado, entonces el algoritmo es exacto. Si además, el algoritmo es rápido y dirige mejor el proceso, este se dice eficiente. En sentido estricto, la eficiente se mide por tiempo (*time complexity*) y espacio (*space complexity*). 
+
+¿Cómo medir estos indicadores?
+- Running time: número de intentos para lograr el objetivo.
+- Big O: definición teórica de la complejidad de un algoritmo como una función del tamaño. O es por orden de magnitud de complejidad.
+O(n) sería el algoritmo lineal, O(log n) sería el algoritmo binario (partir por mitades).
+Los algoritmos que crecen logaritmicamente en relación a intentos sobre un objetivo, son mejores, mas eficientes, que los lineales. Por ejemplo la busqueda binaria, que parte por la mitad los numeros en sucesivas ocasiones hasta encontrar el número.
+
+
+
+
+ 
