@@ -100,12 +100,71 @@ Select Rating * 2 as Rating_times_2 from df;
 
 ######### Proceso de ETL #########
 
-
 describe df;
 
 select 'Customer type' from df;
 
 ALTER TABLE df CHANGE `Customer type` Customer_type VARCHAR(255);
+
+describe df;
+select Date from df;
+
+# Modificación de el tipado de Date
+
+update df 
+set Date = str_to_date(Date, '%m/%d/%Y'); 
+
+alter table df modify column Date DATE;
+
+describe df; 
+
+update df set Time = str_to_date(Time, '%H:%i');
+
+alter table df modify Time TIME;
+
+############### Sesión 28.11: normalización ###############
+
+create table Customer(
+	CustomerID INT auto_increment primary key,
+    CustomerType varchar(50),
+    Gender varchar(10),
+    Rating float
+);
+
+select * from Customer;
+
+create table Invoices(
+	InvoiceID varchar(50) primary key,
+    Branch varchar(10),
+    City varchar(50),
+    Date DATE,
+    Time TIME,
+    payment varchar(50),
+    CustomerID INT,
+    foreign key (CustomerID) references Customer(CustomerID)
+);
+
+select * from Invoices;
+
+create table Products(
+	ProductID INT auto_increment primary key,
+	ProductLine varchar(50)
+    ## UnitPrice ???
+);
+
+create table sales (
+	SaleID int auto_increment primary key,
+    InvoiceID varchar(50),
+    ProductID INT,
+    Quantity INT,
+    Tax float,
+    Total float,
+    COGS float,
+    GrossMargin float,
+    GrossIncome float,
+    foreign key (InvoiceID) references Invoices(InvoiceID),
+    foreign key (ProductID) references Products(ProductID)
+)
 
 
 

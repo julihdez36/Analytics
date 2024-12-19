@@ -126,6 +126,49 @@ describe sales;
 
 select * from sales;
 
+########### Almacenamito como BDR ########### 
+
+create table Customer (
+	CustomerID int auto_increment primary key,
+    CustomerType varchar(50),
+    Gender varchar(50),
+    Raiting float
+);
+
+create table Invoices(
+	InvoiceID varchar(50) primary key,
+    Branch varchar(10),
+    City varchar(50),
+    Date date,
+    Time time,
+    Payment varchar(50),
+    CustomerID int,
+    foreign key (CustomerID) references Customer(CustomerID)
+);
+
+create table Products(
+	ProductID int auto_increment primary key,
+    Name varchar(50),
+	ProductLine varchar(50),
+    UnitPrice float    
+);
+
+create table sales(
+	SalesID int auto_increment primary key,
+    InvoiceID varchar(50),
+    ProductID int,
+    Quantity int,
+    Tax float,
+    Total float,
+    COGS float, 
+    GrossMarginPer float,
+    GrossIncome float,
+    foreign key (InvoiceID) references Invoices(InvoiceID),
+    foreign key (ProductID) references Products(ProductID)
+);
+
+
+
 
 
 
