@@ -167,6 +167,13 @@ create table sales(
     foreign key (ProductID) references Products(ProductID)
 );
 
+# Migración de datos desde la tabla temporal sales
+
+insert into Customer(CustomerType)
+select distinct `Customer type` from sales;
+
+describe sales;
+
 
 
 
