@@ -1,7 +1,7 @@
 import hashlib
 import time
 
-# Modificar la clase Block para incluir nonce y mine_block()
+# clase Block con nonce y mine_block()
 # Agregar el atributo nonce al bloque.
 # Añadir un método mine_block(difficulty) que busque un hash que empiece con cierto número de ceros ("0" * difficulty).
 
@@ -27,12 +27,12 @@ class Block:
             self.hash = self.calculate_hash()
         print(f"Bloque minado: {self.hash}")
 
-# Paso 2: Modificar la clase Blockchain para aplicar minería
+# Paso 2: clase Blockchain para aplicar minería
 # Ahora hacemos que cada nuevo bloque sea minado antes de añadirse a la cadena. También añadimos un atributo de dificultad a la blockchain:
 
 class Blockchain:
     def __init__(self):
-        self.difficulty = 2  # 🔸 Cuántos ceros debe tener el hash al inicio
+        self.difficulty = 2  # Cuántos ceros debe tener el hash al inicio
         self.chain = [self.create_genesis_block()]
         
 
@@ -62,16 +62,14 @@ class Blockchain:
             previous = self.chain[i - 1]
 
             if current.hash != current.calculate_hash():
-                print("❌ Hash alterado")
+                print("Hash alterado")
                 return False
 
             if current.previous_hash != previous.hash:
-                print("❌ Enlace roto")
+                print("Enlace roto")
                 return False
 
         return True
-
-# Probar la nueva versión con minería
 
 # Prueba rápida con minería
 my_blockchain = Blockchain()
